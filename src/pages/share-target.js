@@ -12,13 +12,14 @@ const ShareTargetPage = () => {
 
       // Do something with the shared data (e.g. display it on the page)
       setSharedLink({ title: title, text: text, link: url });
+      alert(sharedLink)
     });
 
     // Clean up the event listener
     return () => {
       window.removeEventListener("share");
     };
-  }, []);
+  }, [sharedLink]);
 
   return (
     <div>
