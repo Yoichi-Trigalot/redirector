@@ -3,22 +3,31 @@ import ReplyIcon from "@mui/icons-material/Reply";
 require("isomorphic-fetch");
 
 export default function Home() {
-
   useEffect(() => {
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker
+        .register("/service-worker.js")
+        .then(function (reg) {
+          console.log("Service worker registered.");
+        })
+        .catch(function (err) {
+          console.log("Service worker not registered. This happened:", err);
+        });
+    }
+
     function keyDownHandler(e: globalThis.KeyboardEvent) {
       if (e.code === "Enter") {
         console.log(`You pressed ${e.code}`);
         handleSubmit();
       }
-    };
+    }
     document.addEventListener("keydown", keyDownHandler);
 
     // clean up
     return () => {
       document.removeEventListener("keydown", keyDownHandler);
     };
-  }, []);
-
+  }, [handleSubmit]);
 
   const [url, setUrl] = useState("");
   const [html, setHtml] = useState("");
@@ -84,8 +93,7 @@ export default function Home() {
           onClick={() => {
             setHtml("");
             setUrl("");
-          }
-        }
+          }}
         >
           <ReplyIcon sx={{ color: "#383E42" }} />
         </button>
