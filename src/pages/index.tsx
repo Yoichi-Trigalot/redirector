@@ -56,7 +56,7 @@ export default function Home() {
           className="flex flex-col items-center justify-center h-screen w-screen mainForm"
         >
           <span className="text-gray-700 pb-2">
-            Paste Medium article&rsquo;s URL:
+            📃 Paste Medium article&rsquo;s URL:
           </span>
           <label className="my-4">
             <input
