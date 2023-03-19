@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+	background-color: #fefefe
+}
+
+figure {
+	label {
+		display: none;
+	}
+	input {
+		display: none;
+	}
+}
+
+article {
+	section > * {
+		margin-top: 15px;
+	}
+}
+
+.gist, pre {
+	padding: 15px;
+	background: #dedede;
+	overflow: auto;
+	font-size: .6rem;
+}
