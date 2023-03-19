@@ -11,6 +11,7 @@ const ShareTargetPage = () => {
       description: parsedUrl.searchParams.get('description'),
       link: parsedUrl.searchParams.get('link'),
     })
+    alert(sharedLink);
   }, [sharedLink]);
 
   return (
