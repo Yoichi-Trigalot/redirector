@@ -38,12 +38,6 @@ export default function Home() {
       const response = await fetch(`/api/proxy/${buildedUrl}`);
       const html = await response.text();
 
-      // build html scribe response
-      let htmlResponseIndex = html.indexOf("<h1>");
-      let htmlResponse = html.substring(htmlResponseIndex);
-
-      // clear url and display result
-      setUrl("");
       setHtml(html);
     }
   }
@@ -87,7 +81,11 @@ export default function Home() {
       {html && (
         <button
           className="bg-zinc-300 hover:bg-zinc-500 text-black py-2 px-3 rounded fixed bottom-10 right-10 shadow-lg"
-          onClick={() => setHtml("")}
+          onClick={() => {
+            setHtml("");
+            setUrl("");
+          }
+        }
         >
           <ReplyIcon sx={{ color: "#383E42" }} />
         </button>
