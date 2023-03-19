@@ -28,7 +28,7 @@
     }
   ],
   "share_target": {
-    "action": "/shared-content-receiver/",
+    "action": "/share-target/",
     "method": "GET",
     "params": {
       "title": "name",

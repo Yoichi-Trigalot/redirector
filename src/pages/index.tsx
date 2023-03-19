@@ -27,7 +27,7 @@ export default function Home() {
     return () => {
       document.removeEventListener("keydown", keyDownHandler);
     };
-  }, [handleSubmit]);
+  });
 
   const [url, setUrl] = useState("");
   const [html, setHtml] = useState("");
