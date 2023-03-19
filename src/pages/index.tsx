@@ -77,6 +77,7 @@ export default function Home() {
       )}
       {html && (
         <>
+          <p> Original url : {url}</p>
           <div
             className="container p-10 space-y-4"
             dangerouslySetInnerHTML={{ __html: html }}
