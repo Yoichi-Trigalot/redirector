@@ -6,7 +6,7 @@ export default function Home() {
   useEffect(() => {
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker
-        .register("/service-worker.js")
+        .register("./service-worker.js")
         .then(function (reg) {
           console.log("Service worker registered.");
         })
