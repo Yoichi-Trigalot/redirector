@@ -81,13 +81,19 @@ export default function Home() {
         </form>
       )}
       {html && (
-        <>
-          <p> Original url : {url}</p>
+        <div className="container p-10">
+          <p className="text-xs">
+            Original url :{" "}
+            <span className="text-blue-400">
+              <a href={url} target="_blank">{url}</a>
+            </span>
+          </p>
+          <hr className="mt-4" />
           <div
-            className="container p-10 space-y-4"
+            className="space-y-4"
             dangerouslySetInnerHTML={{ __html: html }}
           ></div>
-        </>
+        </div>
       )}
       {html && (
         <button

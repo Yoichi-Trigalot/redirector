@@ -1,12 +1,14 @@
 {
+  "name": "Redirector",
+  "version": "1.0",
+  "description": "Simple medium article to scribe, free redirect url application",
+  "author": "Y.Trigalot",
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
-  "name": "Redirector",
   "short_name": "redirect",
   "theme_color": "#ffffff",
   "background_color": "#ffffff",
-  "description": "Simple medium article to scribe, free redirect url application",
   "icons": [
     {
       "src": "/icon-192x192.png",
