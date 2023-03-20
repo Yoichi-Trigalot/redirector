@@ -58,21 +58,22 @@ export default function Home() {
           onSubmit={handleSubmit}
           className="flex flex-col items-center justify-center h-screen w-screen mainForm"
         >
-          <span className="text-gray-700 pb-2">
+          {/* <span className="text-gray-700 pb-2">
             📃 Paste Medium article&rsquo;s URL:
-          </span>
-          <label className="my-4">
-            <input
-              type="text"
-              name="url"
-              value={url}
-              onChange={handleUrlChange}
-              className="w-80 ml-2 px-4 py-2 border border-gray-400 rounded-md shadow-sm focus:ring-2 focus:ring-zinc-400 focus:border-transparent"
-            />
+          </span> */}
+          <label className="text-gray-700 pb-2" htmlFor="url">
+            📃 Paste Medium article&rsquo;s URL:
           </label>
+          <input
+            type="text"
+            name="url"
+            value={url}
+            onChange={handleUrlChange}
+            className="w-80 ml-2 px-4 py-2 border border-gray-400 rounded-md shadow-sm focus:ring-2 focus:ring-zinc-400 focus:border-transparent"
+          />
           <button
             type="submit"
-            className="mt-2 px-4 py-2 bg-zinc-300 text-black rounded-md shadow-sm hover:bg-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-400 focus:ring-opacity-50"
+            className="mt-4 px-4 py-2 bg-zinc-300 text-black rounded-md shadow-sm hover:bg-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-400 focus:ring-opacity-50"
           >
             Scribe It !
           </button>
