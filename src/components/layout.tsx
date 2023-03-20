@@ -15,7 +15,10 @@ export const Layout = ({ children }: MyProps) => {
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
         <title>Redirector</title>
-        <meta name="description" content="" />
+        <meta
+          name="description"
+          content="Simple redirecting url App, read prime medium's article for free"
+        />
         <link rel="icon" href="/icon-192x192.png" />
       </Head>
       <div className="min-h-screen flex flex-col justify-between ">

@@ -6,10 +6,6 @@ export default function Document() {
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/icon.png"></link>
         <meta name="theme-color" content="#fefefe" />
-        <meta
-          name="description"
-          content="Simple redirecting url App, read prime medium's article for free"
-        />
       </Head>
       <body>
         <Main />

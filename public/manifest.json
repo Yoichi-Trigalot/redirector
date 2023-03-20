@@ -3,7 +3,9 @@
   "scope": "/",
   "start_url": "/",
   "name": "Redirector",
-  "short_name": "red",
+  "short_name": "redirect",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
   "description": "Simple medium article to scribe, free redirect url application",
   "icons": [
     {
@@ -29,7 +31,8 @@
   ],
   "share_target": {
     "action": "/share-target/",
-    "method": "GET",
+    "enctype": "multipart/form-data",
+    "method": "POST",
     "params": {
       "title": "name",
       "text": "description",
