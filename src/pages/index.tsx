@@ -1,10 +1,18 @@
 import { useState, useEffect } from "react";
 import ReplyIcon from "@mui/icons-material/Reply";
+import CircularProgress from "@mui/material/CircularProgress";
+import { useRouter } from "next/router";
 require("isomorphic-fetch");
 
 export default function Home() {
-  useEffect(() => {
 
+  const [link, setLink] = useState("");
+  const [url, setUrl] = useState("");
+  const [html, setHtml] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+
+  useEffect(() => {
     function keyDownHandler(e: globalThis.KeyboardEvent) {
       if (e.code === "Enter") {
         console.log(`You pressed ${e.code}`);
@@ -19,14 +27,21 @@ export default function Home() {
     };
   });
 
-  const [url, setUrl] = useState("");
-  const [html, setHtml] = useState("");
+  // const router = useRouter();
+  // if ( router.query ) {
+  //   const data = String(router.query?.link);
+  //   setLink(data);
+  // }
+
 
   function handleUrlChange(event: React.FormEvent<HTMLInputElement>) {
     setUrl(event.currentTarget.value);
   }
 
-  async function handleSubmit(event?: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(
+    event?: React.FormEvent<HTMLFormElement>,
+    link?: string
+  ) {
     if (event) event.preventDefault();
     if (url != "") {
       // build scribe url
@@ -34,16 +49,21 @@ export default function Home() {
       let buildedUrl = `https://scribe.rip${urlQueue}`;
 
       // fetch scribed Resopnse
+      setIsLoading(true);
       const response = await fetch(`/api/proxy/${buildedUrl}`);
       const html = await response.text();
 
       setHtml(html);
+      setIsLoading(false);
+    }
+    if (link != "") {
+      console.log(link)
     }
   }
 
   return (
     <>
-      {!html && (
+      {!html && !isLoading && (
         <form
           onSubmit={handleSubmit}
           className="flex flex-col items-center justify-center h-screen w-screen mainForm"
@@ -70,12 +90,19 @@ export default function Home() {
           </button>
         </form>
       )}
-      {html && (
+      {isLoading && (
+        <div className="flex min-h-screen items-center circular">
+          <CircularProgress />
+        </div>
+      )}
+      {html && !isLoading && (
         <div className="container p-10">
-          <p className="text-xs">
+          <p className="text-md">
             Original url :{" "}
             <span className="text-blue-400">
-              <a href={url} target="_blank">{url}</a>
+              <a href={url} target="_blank">
+                {url}
+              </a>
             </span>
           </p>
           <hr className="mt-4" />
