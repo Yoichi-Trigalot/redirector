@@ -4,13 +4,24 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { useRouter } from "next/router";
 require("isomorphic-fetch");
 
-export default function Home() {
 
-  const [link, setLink] = useState("");
+export default function Home() {
+  const router = useRouter();
+
   const [url, setUrl] = useState("");
   const [html, setHtml] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
+  //@ts-ignore
+  if (router?.components) {
+    //@ts-ignore
+    let myLink = String(router.components["/"].query?.myLink);
+    myLink = myLink.slice(0, 6) + "/" + myLink.slice(6); // todo utile une fois qu'on fetch le bon lien ? //
+    if (myLink != "") {
+      // TODO: Pb de boucle ici dans le handle submit ...
+      // handleSubmit(undefined, String(myLink));
+      // myLink = "";
+    }
+  }
 
   useEffect(() => {
     function keyDownHandler(e: globalThis.KeyboardEvent) {
@@ -27,12 +38,6 @@ export default function Home() {
     };
   });
 
-  // const router = useRouter();
-  // if ( router.query ) {
-  //   const data = String(router.query?.link);
-  //   setLink(data);
-  // }
-
 
   function handleUrlChange(event: React.FormEvent<HTMLInputElement>) {
     setUrl(event.currentTarget.value);
@@ -42,22 +47,20 @@ export default function Home() {
     event?: React.FormEvent<HTMLFormElement>,
     link?: string
   ) {
+    setIsLoading(true);
     if (event) event.preventDefault();
-    if (url != "") {
+    let target = String(url != "" ? url : link != "" ? link : "");
+    if (target != "") {
       // build scribe url
-      let urlQueue = new URL(url).pathname;
+      let urlQueue = new URL(target).pathname;
       let buildedUrl = `https://scribe.rip${urlQueue}`;
 
       // fetch scribed Resopnse
-      setIsLoading(true);
       const response = await fetch(`/api/proxy/${buildedUrl}`);
       const html = await response.text();
 
       setHtml(html);
       setIsLoading(false);
-    }
-    if (link != "") {
-      console.log(link)
     }
   }
 
@@ -68,12 +71,10 @@ export default function Home() {
           onSubmit={handleSubmit}
           className="flex flex-col items-center justify-center h-screen w-screen mainForm"
         >
+          {/* <p className="w-80">link: {myLink}</p> */}
           <span className="text-gray-700 pb-2">
             📃 Paste Medium article&rsquo;s URL:
           </span>
-          {/* <label className="text-gray-700 pb-2" htmlFor="url">
-            📃 Paste Medium article&rsquo;s URL:
-          </label> */}
           <input
             aria-label="Paste Medium article's URL:"
             type="text"

@@ -20,13 +20,13 @@ const ShareTargetPage = () => {
 
     setIsLoading(false);
 
+    Router.push({
+      pathname: '/',
+      query: { myLink: results[1] }
+    })
 
   }, [link, parsedUrl, isLoading]);
 
-  // Router.push({
-  //   pathname: '/',
-  //   query: { link: {link} }
-  // })
 
   return (
     <div>

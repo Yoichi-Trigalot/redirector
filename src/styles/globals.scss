@@ -31,8 +31,16 @@ h3 {
 	font-size: 1.1em;
 	text-decoration: underline;
 }
+img {
+	text-align: center;
+	max-height: 70vh;
+	width: auto;
+}
 
 figure {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
 	label {
 		display: none;
 	}
