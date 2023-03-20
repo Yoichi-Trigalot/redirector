@@ -1,19 +1,9 @@
-import { KeyboardEvent, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import ReplyIcon from "@mui/icons-material/Reply";
 require("isomorphic-fetch");
 
 export default function Home() {
   useEffect(() => {
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker
-        .register("/sw.js")
-        .then(function (reg) {
-          console.log("Service worker registered.");
-        })
-        .catch(function (err) {
-          console.log("Service worker not registered. This happened:", err);
-        });
-    }
 
     function keyDownHandler(e: globalThis.KeyboardEvent) {
       if (e.code === "Enter") {
