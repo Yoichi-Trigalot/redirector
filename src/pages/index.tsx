@@ -58,13 +58,14 @@ export default function Home() {
           onSubmit={handleSubmit}
           className="flex flex-col items-center justify-center h-screen w-screen mainForm"
         >
-          {/* <span className="text-gray-700 pb-2">
+          <span className="text-gray-700 pb-2">
             📃 Paste Medium article&rsquo;s URL:
-          </span> */}
-          <label className="text-gray-700 pb-2" htmlFor="url">
+          </span>
+          {/* <label className="text-gray-700 pb-2" htmlFor="url">
             📃 Paste Medium article&rsquo;s URL:
-          </label>
+          </label> */}
           <input
+            aria-label="Paste Medium article's URL:"
             type="text"
             name="url"
             value={url}
