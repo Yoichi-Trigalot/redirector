@@ -10,4 +10,7 @@ self.addEventListener('fetch', event => {
 			return Response.redirect(`/share-target/${stringedBody}`, 303);
 		})());
 	}
+
+
 });
+

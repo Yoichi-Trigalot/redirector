@@ -3,6 +3,9 @@ import ReplyIcon from "@mui/icons-material/Reply";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useRouter } from "next/router";
 import { useTheme } from "next-themes";
+// google Analytics
+import ReactGA from "react-ga";
+
 require("isomorphic-fetch");
 
 export default function Home() {
@@ -17,8 +20,21 @@ export default function Home() {
   const [html, setHtml] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+  if (typeof window !== "undefined") {
+    if (window.location.href.includes("fromPwa=true")) {
+      window.addEventListener("appinstalled", () => {
+        ReactGA.event({
+          category: "PWA",
+          action: "Install",
+          label: "User installed PWA",
+        });
+      });
+    }
+  }
 
   useEffect(() => {
+    ReactGA.initialize("G-FQCPHZF3MJ");
+
     setIsMounted(true);
 
     function keyDownHandler(e: globalThis.KeyboardEvent) {
@@ -32,7 +48,6 @@ export default function Home() {
     return () => {
       document.removeEventListener("keydown", keyDownHandler);
     };
-
   });
 
   const handleShortLink = async (shortLink: string): Promise<string> => {
@@ -73,7 +88,8 @@ export default function Home() {
     if (event) event.preventDefault();
     let target = String(url != "" ? url : fetchLink != "" ? fetchLink : "");
     if (target != "" && target != "undefined") {
-      if (target.includes("link.medium.com")) target = await handleShortLink(target);
+      if (target.includes("link.medium.com"))
+        target = await handleShortLink(target);
       // build scribe url
       console.log("target", target);
       let urlQueue = new URL(target).pathname;
@@ -96,7 +112,7 @@ export default function Home() {
       myLink == "undefined" ? "" : myLink.slice(0, 6) + "/" + myLink.slice(6);
     if (myLink != "" && myLink !== "undefined" && myLink !== link) {
       if (myLink.includes("link.medium.com")) {
-        handleShortLink(myLink).then((result) => myLink = result);
+        handleShortLink(myLink).then((result) => (myLink = result));
       }
       setLink(myLink);
       handleSubmit(undefined, myLink);
@@ -132,7 +148,6 @@ export default function Home() {
       );
     }
   };
-
 
   return (
     <>

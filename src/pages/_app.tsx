@@ -1,6 +1,6 @@
 import { AppProps } from "next/app";
 import "../styles/globals.scss";
-import { ThemeProvider } from 'next-themes'
+import { ThemeProvider } from "next-themes";
 import { Layout } from "../components/layout";
 import "@fontsource/roboto";
 

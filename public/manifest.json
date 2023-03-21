@@ -5,7 +5,7 @@
   "author": "Y.Trigalot",
   "display": "standalone",
   "scope": "/",
-  "start_url": "/",
+  "start_url": "/?fromPwa=true",
   "short_name": "redirect",
   "theme_color": "#ffffff",
   "background_color": "#ffffff",
