@@ -220,6 +220,7 @@ export default function Home() {
       )}
       <button
         className="dark:bg-stone-100 bg-zinc-800 py-2 px-3 rounded fixed top-10 right-10 shadow-lg"
+        name="night mode toggle button"
         onClick={(e) => {
           e.preventDefault();
         }}
