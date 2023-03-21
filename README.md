@@ -1,56 +1,40 @@
 # Redirector
 
-> **Redirector** is an App that simply let you read medium paid articles for free.
+> ** Redirector ** is an App that simply let you read medium paid articles for free.
 
 ## How
 
-The app is based on that project ( [link](https://scribe.rip/) ) and adds value to it providing a more friendly interface and kind of automation to the process...
+The app is based on that project( [link](https://scribe.rip/) ) and adds value to it providing a more friendly interface and kind of automation to the process...
 
 ## Two ways :
 
 - Simply open the app, and paste an article link you've already copied
 
-- Use the native share functionality of your device (browser, medium app, etc..) to send the link directly to the App.
-  (This feature is currently not available for IOS devices)
+- Use the native share functionality of your device(browser, medium app, etc..) to send the link directly to the App.
+(This feature is currently not available for IOS devices)
 
 ## The App
 
-You can use it online straight from the site : [Redirector](https://scribe.rip/)
+You can use it online straight from the site: [Redirector](https://redirector-theta.vercel.app/)
 
 // todo : Add image when logo has been added
 
 Or you can install the PWA :
 
-### Installation
-
+### 🛠️ Installation
 The browser is supposed to suggest installing the PWA application.
 
-<div style="text-align: center;">
-	<img  src="./public/suggest.jpg" height="800">
-</div>
+<img  src = "./public/suggest.jpg" height = "800" >
 
 If you dont see the prompt 'Add to Home screen', then follow the instructions :
 
-1. ### Android devices :
+1. ### 🤖 Android devices :
 
-<div style="text-align: center;">
-<<<<<<< HEAD
 <img src="./public/android.png" width="900">
-=======
-<img src="./public/android.png" width="800">
->>>>>>> 9f66ebe1472cf3b0ef440665b5e30824747ba07f
-</div>
 
-2. ### Ios devices :
+2. ### 🍎 Ios devices :
 
-<div style="text-align: center;">
-   <span style="color:orange">Warning : you can Only install pwa from safari browser.</span>
-	 </div>
+⚠️ Warning : you can only install pwa from safari .
 
-<div style="text-align: center;">
-<<<<<<< HEAD
-   <img src="./public/ios.jpeg" width="900">
-=======
-   <img src="./public/ios.jpeg" width="800">
->>>>>>> 9f66ebe1472cf3b0ef440665b5e30824747ba07f
-</div>
+<img src="./public/ios.jpeg" width="900">
+
