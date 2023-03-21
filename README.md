@@ -26,13 +26,15 @@ Or you can install the PWA :
 The browser is supposed to suggest installing the PWA application.
 
 <div style="text-align: center;">
-	<img  src="./public/suggest.jpg" height="500">
+	<img  src="./public/suggest.jpg" height="800">
 </div>
+
+If you dont see the prompt 'Add to Home screen', then follow the instructions :
 
 1. ### Android devices :
 
 <div style="text-align: center;">
-<img src="./public/android.png" width="600">
+<img src="./public/android.png" width="900">
 </div>
 
 2. ### Ios devices :
@@ -42,5 +44,5 @@ The browser is supposed to suggest installing the PWA application.
 	 </div>
 
 <div style="text-align: center;">
-   <img src="./public/ios.jpeg" width="600">
+   <img src="./public/ios.jpeg" width="900">
 </div>
