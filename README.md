@@ -34,7 +34,11 @@ If you dont see the prompt 'Add to Home screen', then follow the instructions :
 1. ### Android devices :
 
 <div style="text-align: center;">
+<<<<<<< HEAD
 <img src="./public/android.png" width="900">
+=======
+<img src="./public/android.png" width="800">
+>>>>>>> 9f66ebe1472cf3b0ef440665b5e30824747ba07f
 </div>
 
 2. ### Ios devices :
@@ -44,5 +48,9 @@ If you dont see the prompt 'Add to Home screen', then follow the instructions :
 	 </div>
 
 <div style="text-align: center;">
+<<<<<<< HEAD
    <img src="./public/ios.jpeg" width="900">
+=======
+   <img src="./public/ios.jpeg" width="800">
+>>>>>>> 9f66ebe1472cf3b0ef440665b5e30824747ba07f
 </div>
