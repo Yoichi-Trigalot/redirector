@@ -4,10 +4,10 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { useRouter } from "next/router";
 require("isomorphic-fetch");
 
-
 export default function Home() {
   const router = useRouter();
 
+  const [pastedText, setPastedText] = useState("");
   const [url, setUrl] = useState("");
   const [html, setHtml] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -38,9 +38,15 @@ export default function Home() {
     };
   });
 
+  const handlePaste = async () => {
+    const text = await navigator.clipboard.readText();
+    setPastedText(text);
+    setUrl(text);
+  };
 
   function handleUrlChange(event: React.FormEvent<HTMLInputElement>) {
     setUrl(event.currentTarget.value);
+    setPastedText(event.currentTarget.value);
   }
 
   async function handleSubmit(
@@ -72,23 +78,44 @@ export default function Home() {
           className="flex flex-col items-center justify-center h-screen w-screen mainForm"
         >
           {/* <p className="w-80">link: {myLink}</p> */}
-          <span className="text-gray-700 pb-2">
+          <span className="text-gray-700 pb-2 text-xl mb-5">
             📃 Paste Medium article&rsquo;s URL:
           </span>
           <input
             aria-label="Paste Medium article's URL:"
             type="text"
             name="url"
-            value={url}
+            value={url || pastedText}
             onChange={handleUrlChange}
-            className="w-80 ml-2 px-4 py-2 border border-gray-400 rounded-md shadow-sm focus:ring-2 focus:ring-zinc-400 focus:border-transparent"
+            className="w-80 px-4 py-2 mb-3 border border-gray-300 rounded-sm shadow focus:ring-2 focus:ring-gray-300  focus:outline-none"
           />
-          <button
-            type="submit"
-            className="mt-4 px-4 py-2 bg-zinc-300 text-black rounded-md shadow-sm hover:bg-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-400 focus:ring-opacity-50"
-          >
-            Scribe It !
-          </button>
+          <div className="flex w-80 justify-between  ">
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                handlePaste();
+              }}
+              className="mt-4 px-4 py-2 text-blue-400 border border-blue-400 rounded-sm shadow hover:bg-blue-400 hover:text-white"
+            >
+              Paste url
+            </button>
+            <button
+              className="mt-4 px-4 py-2 border border-red-300 hover:bg-red-400 text-red-300 hover:text-white rounded-sm shadow"
+              onClick={(e) => {
+                e.preventDefault();
+                setPastedText("");
+                setUrl("");
+              }}
+            >
+              Clear
+            </button>
+            <button
+              type="submit"
+              className="mt-4 px-4 py-2 text-lime-500 border border-lime-500 rounded-sm shadow hover:bg-lime-500 hover:text-white"
+            >
+              Scribe It !
+            </button>
+          </div>
         </form>
       )}
       {isLoading && (
