@@ -5,9 +5,9 @@ export default function Document() {
       <Head>
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/icon.png"></link>
-        <meta name="theme-color" content="#fefefe" />
+        {/* <meta name="theme-color" content="#fefefe" /> */}
       </Head>
-      <body>
+      <body className="bg-stone-100 dark:bg-zinc-800">
         <Main />
         <NextScript />
       </body>
