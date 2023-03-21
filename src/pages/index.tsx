@@ -9,16 +9,20 @@ export default function Home() {
 
   const [pastedText, setPastedText] = useState("");
   const [url, setUrl] = useState("");
+  const [link, setLink] = useState("");
   const [html, setHtml] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   //@ts-ignore
   if (router?.components) {
     //@ts-ignore
     let myLink = String(router.components["/"].query?.myLink);
-    myLink = myLink.slice(0, 6) + "/" + myLink.slice(6); // todo utile une fois qu'on fetch le bon lien ? //
-    if (myLink != "") {
-      // TODO: Pb de boucle ici dans le handle submit ...
-      // handleSubmit(undefined, String(myLink));
+    myLink = myLink == "undefined" ? "" :myLink.slice(0, 6) + "/" + myLink.slice(6);
+    if (myLink != "" && myLink !== "undefined" && myLink !== link) {
+      // check for includes("link.medium.com")
+      // if so => fetch link and get  1st “validateProtocol” set value tu URL
+      // then
+      setLink(myLink);
+      handleSubmit(undefined, myLink);
       // myLink = "";
     }
   }
@@ -26,7 +30,6 @@ export default function Home() {
   useEffect(() => {
     function keyDownHandler(e: globalThis.KeyboardEvent) {
       if (e.code === "Enter") {
-        console.log(`You pressed ${e.code}`);
         handleSubmit();
       }
     }
@@ -37,6 +40,9 @@ export default function Home() {
       document.removeEventListener("keydown", keyDownHandler);
     };
   });
+  const handleShortLink = () => {
+
+  }
 
   const handlePaste = async () => {
     const text = await navigator.clipboard.readText();
@@ -44,19 +50,19 @@ export default function Home() {
     setUrl(text);
   };
 
-  function handleUrlChange(event: React.FormEvent<HTMLInputElement>) {
+  const handleUrlChange = (event: React.FormEvent<HTMLInputElement>) => {
     setUrl(event.currentTarget.value);
     setPastedText(event.currentTarget.value);
   }
 
-  async function handleSubmit(
+  const handleSubmit = async (
     event?: React.FormEvent<HTMLFormElement>,
-    link?: string
-  ) {
+    fetchLink?: string
+  ) => {
     setIsLoading(true);
     if (event) event.preventDefault();
-    let target = String(url != "" ? url : link != "" ? link : "");
-    if (target != "") {
+    let target = String(url != "" ? url : fetchLink != "" ? fetchLink : "");
+    if (target != "" && target != "undefined") {
       // build scribe url
       let urlQueue = new URL(target).pathname;
       let buildedUrl = `https://scribe.rip${urlQueue}`;
@@ -66,8 +72,8 @@ export default function Home() {
       const html = await response.text();
 
       setHtml(html);
-      setIsLoading(false);
     }
+    setIsLoading(false);
   }
 
   return (
@@ -77,7 +83,6 @@ export default function Home() {
           onSubmit={handleSubmit}
           className="flex flex-col items-center justify-center h-screen w-screen mainForm"
         >
-          {/* <p className="w-80">link: {myLink}</p> */}
           <span className="text-gray-700 pb-2 text-xl mb-5">
             📃 Paste Medium article&rsquo;s URL:
           </span>
@@ -120,16 +125,16 @@ export default function Home() {
       )}
       {isLoading && (
         <div className="flex min-h-screen items-center circular">
-          <CircularProgress />
+          <CircularProgress sx={{ color: "rgb(132 204 22)" }} />
         </div>
       )}
       {html && !isLoading && (
         <div className="container p-10">
           <p className="text-md">
-            Original url :{" "}
+            Original url :
             <span className="text-blue-400">
-              <a href={url} target="_blank">
-                {url}
+              <a href={url || link} target="_blank">
+                {url || link}
               </a>
             </span>
           </p>

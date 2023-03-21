@@ -6,7 +6,6 @@ const ShareTargetPage = () => {
 
   const [link, setLink] = useState();
   const [parsedUrl, setParsedUrl] = useState();
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
 
@@ -18,30 +17,17 @@ const ShareTargetPage = () => {
     setLink(link)
     setParsedUrl(parsedUrl)
 
-    setIsLoading(false);
-
     Router.push({
       pathname: '/',
       query: { myLink: results[1] }
     })
 
-  }, [link, parsedUrl, isLoading]);
+  }, [link, parsedUrl]);
 
 
   return (
-    <div>
-      {
-        isLoading &&
-        <CircularProgress />
-      }
-      {
-        !isLoading &&
-        <>
-          <h1>Share Target Page</h1>
-          <p className="w-80"> Link: {link}</p>
-          <p className="w-80"> Parsed Url: {parsedUrl}</p>
-        </>
-      }
+    <div className="flex min-h-screen items-center circular">
+      <CircularProgress sx={{ color: "rgb(132 204 22)" }} />
     </div>
   );
 };
