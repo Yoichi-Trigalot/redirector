@@ -11,31 +11,36 @@ The app is based on that project ( [link](https://scribe.rip/) ) and adds value 
 - Simply open the app, and paste an article link you've already copied
 
 - Use the native share functionality of your device (browser, medium app, etc..) to send the link directly to the App.
-(This feature is currently not available for IOS devices)
+  (This feature is currently not available for IOS devices)
 
 ## The App
 
 You can use it online straight from the site : [Redirector](https://scribe.rip/)
 
-// todo :  Add image when logo has been added
+// todo : Add image when logo has been added
 
 Or you can install the PWA :
 
-### installation
+### Installation
 
-1. Android devices :
+The browser is supposed to suggest installing the PWA application.
 
-	// todo :  Add images and steps for installation
+<div style="text-align: center;">
+	<img  src="./public/suggest.jpg" height="300">
+</div>
 
-2. Ios devices :
+1. ### Android devices :
 
-	<div>
-		<img src="./public/share-ios.png" height="300">
-		<img src="./public/add-home-ios.jpeg" height="300">
-		<img src="./public/add-ios.png" height="300">
-	</div>
+<div style="text-align: center;">
+<img src="./public/android.png" width="400">
+</div>
 
-	// todo :  Add images and steps for installation
-	<span style="color:orange">Warning : you can Only install pwa from safari browser.</span>
+2. ### Ios devices :
 
+<div style="text-align: center;">
+   <span style="color:orange">Warning : you can Only install pwa from safari browser.</span>
+	 </div>
 
+<div style="text-align: center;">
+   <img src="./public/ios.jpeg" width="400">
+</div>
