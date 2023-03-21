@@ -12,22 +12,10 @@ export default function Home() {
   const [link, setLink] = useState("");
   const [html, setHtml] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  //@ts-ignore
-  if (router?.components) {
-    //@ts-ignore
-    let myLink = String(router.components["/"].query?.myLink);
-    myLink = myLink == "undefined" ? "" :myLink.slice(0, 6) + "/" + myLink.slice(6);
-    if (myLink != "" && myLink !== "undefined" && myLink !== link) {
-      // check for includes("link.medium.com")
-      // if so => fetch link and get  1st “validateProtocol” set value tu URL
-      // then
-      setLink(myLink);
-      handleSubmit(undefined, myLink);
-      // myLink = "";
-    }
-  }
 
   useEffect(() => {
+    // handleRouterComponents();
+
     function keyDownHandler(e: globalThis.KeyboardEvent) {
       if (e.code === "Enter") {
         handleSubmit();
@@ -40,9 +28,25 @@ export default function Home() {
       document.removeEventListener("keydown", keyDownHandler);
     };
   });
-  const handleShortLink = () => {
 
-  }
+  const handleShortLink = async (shortLink: string): Promise<string> => {
+    let result = "";
+    try {
+      const response = await fetch(`/api/proxy/${shortLink}`);
+      const html = await response.text();
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, "text/html");
+      const element = doc.querySelector('a[class="action"]');
+      if (element) {
+        //@ts-ignore
+        result = element.href;
+      }
+    } catch (error) {
+      console.error(error);
+    }
+
+    return result;
+  };
 
   const handlePaste = async () => {
     const text = await navigator.clipboard.readText();
@@ -53,7 +57,7 @@ export default function Home() {
   const handleUrlChange = (event: React.FormEvent<HTMLInputElement>) => {
     setUrl(event.currentTarget.value);
     setPastedText(event.currentTarget.value);
-  }
+  };
 
   const handleSubmit = async (
     event?: React.FormEvent<HTMLFormElement>,
@@ -63,7 +67,9 @@ export default function Home() {
     if (event) event.preventDefault();
     let target = String(url != "" ? url : fetchLink != "" ? fetchLink : "");
     if (target != "" && target != "undefined") {
+      if (target.includes("link.medium.com")) target = await handleShortLink(target);
       // build scribe url
+      console.log("target", target);
       let urlQueue = new URL(target).pathname;
       let buildedUrl = `https://scribe.rip${urlQueue}`;
 
@@ -74,6 +80,21 @@ export default function Home() {
       setHtml(html);
     }
     setIsLoading(false);
+  };
+
+  //@ts-ignore
+  if (router?.components) {
+    //@ts-ignore
+    let myLink = String(router.components["/"].query?.myLink);
+    myLink =
+      myLink == "undefined" ? "" : myLink.slice(0, 6) + "/" + myLink.slice(6);
+    if (myLink != "" && myLink !== "undefined" && myLink !== link) {
+      if (myLink.includes("link.medium.com")) {
+        handleShortLink(myLink).then((result) => myLink = result);
+      }
+      setLink(myLink);
+      handleSubmit(undefined, myLink);
+    }
   }
 
   return (
@@ -132,7 +153,7 @@ export default function Home() {
         <div className="container p-10">
           <p className="text-md">
             Original url :
-            <span className="text-blue-400">
+            <span className="text-blue-400 pl-2">
               <a href={url || link} target="_blank">
                 {url || link}
               </a>
