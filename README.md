@@ -2,7 +2,7 @@
 
 > ** Redirector ** is an App that simply let you read medium paid articles for free.
 
-# Disclaimer : no longer works ... 
+# ⚠️ Disclaimer : no longer works ... 
 
 ## How
 
