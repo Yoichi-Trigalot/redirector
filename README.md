@@ -2,6 +2,8 @@
 
 > ** Redirector ** is an App that simply let you read medium paid articles for free.
 
+# Disclaimer : no longer works ... 
+
 ## How
 
 The app is based on that project( [link](https://scribe.rip/) ) and adds value to it providing a more friendly interface and kind of automation to the process...
